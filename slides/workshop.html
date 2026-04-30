@@ -49,6 +49,8 @@
         slideNumberFormat: `${tmplSLIDENUMBERPREFIX}%current%/%total%`,
         excludedClasses: tmplEXCLUDE
       });
+      // Expose for decktape / puppeteer / other automation tooling.
+      window.slideshow = slideshow;
       document.querySelector('#loading').style.display = 'none';
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
         mermaid.initialize({ startOnLoad: false });
