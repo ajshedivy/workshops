@@ -1,0 +1,32 @@
+title: |
+  Using Podman/Docker
+  containers
+
+
+
+#chat: "[Slack](https://dockercommunity.slack.com/messages/C7GKACWDV)"
+
+gitrepo: ""
+
+Author: Adam Shedivy, Software Developer, IBM i (adam.Shedivy@ibm.com)
+
+slides: ""
+
+exclude:
+- self-paced
+- extra-details
+
+content:
+- containers/Title_Ibmi.md
+- shared/toc.md
+-
+  - containers/Agenda_And_Goals.md
+  - containers/Containers_On_Power.md
+  - containers/Docker_Overview_Lite.md
+  - containers/Podman_And_Docker.md
+  - containers/First_Containers.md
+  - containers/Initial_Images_Lite.md
+  - containers/Building_Images_Lite.md
+  - containers/Lab_Hello_Container.md
+  - shared/thankyou.md
+  - containers/Links_Ibmi.md

@@ -1,0 +1,31 @@
+# Note: hyperkube isn't available after Kubernetes 1.18.
+# So we'll have to update this for Kubernetes 1.19!
+
+version: "3"
+
+services:
+
+  pause:
+    ports:
+    - 8080:8080
+    image: k8s.gcr.io/pause
+
+  etcd:
+    network_mode: "service:pause"
+    image: k8s.gcr.io/etcd:3.4.9
+    command: etcd
+
+  kube-apiserver:
+    network_mode: "service:pause"
+    image: k8s.gcr.io/hyperkube:v1.18.8
+    command: kube-apiserver --etcd-servers http://127.0.0.1:2379 --address 0.0.0.0 --disable-admission-plugins=ServiceAccount
+
+  kube-controller-manager:
+    network_mode: "service:pause"
+    image: k8s.gcr.io/hyperkube:v1.18.8
+    command: kube-controller-manager --master http://localhost:8080
+    
+  kube-scheduler:
+    network_mode: "service:pause"
+    image: k8s.gcr.io/hyperkube:v1.18.8
+    command: kube-scheduler --master http://localhost:8080

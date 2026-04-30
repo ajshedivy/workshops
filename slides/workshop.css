@@ -1,0 +1,233 @@
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+/* Fonts! Sizes! And a bit of color. */
+.remark-slide-content {
+  font-family: 'Droid Serif';
+  font-size: 25px !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Droid Serif';
+  font-weight: bold;
+  font-size: 45px !important;
+  margin-top: 0.5em;
+  margin-bottom: 0.75em;
+}
+
+code {
+  font-family: 'Inconsolata';
+  font-size: 110%;
+  background-color: #ccc;
+}
+code.remark-code {
+  font-size: 100%;
+}
+.lab ul li code.remark-code.hljs.bash {
+  padding: 0;
+}
+
+/* For print! Borrowed from https://github.com/gnab/remark/issues/50 */
+@page {
+  size: 1210px 681px;
+  margin: 0;
+ }
+
+@media print {
+  .remark-slide-scaler {
+      width: 100% !important;
+      height: 100% !important;
+      transform: scale(1) !important;
+      top: 0 !important;
+      left: 0 !important;
+  }
+}
+
+/* Don't change things below this unless you know what you're doing! */
+
+/* put slide numbers in top-right corner instead of bottom-right */
+div.remark-slide-number {
+  top: 6px;
+  left: unset;
+  bottom: unset;
+  right: 6px;
+}
+
+.debug {
+  font-family: monospace;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  color: white;
+  background-color: black;
+  opacity: 0;
+}
+.debug a {
+  color: white;
+}
+.debug:hover {
+  opacity: 1;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+}
+
+.remark-slide-content { padding: 1em 2.5em 1em 2.5em; }
+
+.footnote {
+  position: absolute;
+  bottom: 1em;
+}
+span.footnote {
+  bottom: 2em;
+}
+
+.red { color: #fa0000; }
+.gray { color: #ccc; }
+.small { font-size: 70%; }
+.big { font-size: 140%; }
+.underline { text-decoration: underline; }
+.strike { text-decoration: line-through; }
+
+/*
+The pic class is tricky.
+
+It is used to display full screen pictures (for isntance, diagrams).
+We want the picture to take as much space as possible on the slide.
+
+But we have two problems here:
+- some pictures are taller than wide, others are wider than tall;
+- some pictures are displayed by themselves, others with a title.
+
+This makes it particularly difficult to resize the pictures. If we
+set an absolute width or height, it won't work for both taller and
+wider pictures. If we set an absolute height, it won't work with
+both pics-with-title and pics-by-themselves.
+
+Perhaps it would be a good idea to replace the pic class with two
+different classes, like pic-with-title and pic-by-itself; but in
+the meantime, we'll check if the <img> tag is within the first <p>
+in the slide to try and guess if the pic is by itself, or with
+a title. It won't be 100% bulletproof but it should work for
+our slides.
+
+The pixel dimensions in the classes below correspond to the base
+scaler dimensions of remark (see scaler.js in remark source code).
+*/
+div.pic {
+  padding: 0;
+  vertical-align: middle;
+}
+div.pic p {
+  margin: 0;
+}
+div.pic img {
+  display: block;
+  margin: auto;
+  max-width: 1210px;
+  max-height: 550px;
+}
+div.pic p:first-child img {
+  max-width: 1210px;
+  max-height: 681px;
+}
+div.pic h1, div.pic h2, div.title h1, div.title h2 {
+  text-align: center;
+}
+
+/* Center images that are on title slides */
+div.title img {
+  display: block;
+  margin: auto;
+  max-width: 1210px;
+  max-height: 420px; /* Arbitrary value to have some space for the title */
+}
+div.title {
+  vertical-align: middle; 
+}
+div.title > p:first-child {
+  text-align: center;
+  font-size: 300%;
+}
+
+div.pic span.interstitial img {
+  width: 100%;
+  max-height: unset;
+  max-width: unset;
+}
+
+/* "Normal" images (not on title or pic slides) shouldn't be too big */
+div img {
+  max-width: 1210px;
+  max-height: 250px;
+}
+
+.nav {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 25px;
+  font-size: 150%;
+}
+
+.blackbelt {
+  background-image: url("images/blackbelt.png");
+  background-size: 1.5em;
+  background-repeat: no-repeat;
+  padding-left: 2em;
+  background-position: left;
+}
+.warning {
+  background-image: url("images/warning.png");
+  background-size: 1.5em;
+  padding-left: 2em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+.lab {
+  background-color: #eee;
+  background-image: url("images/keyboard.png");
+  background-size: 1.4em;
+  background-repeat: no-repeat;
+  background-position: 0.2em 0.2em;
+  border: 2px dotted black;
+}
+.lab:before {
+  content: ">";
+  margin-left: 1.8em;
+  margin-top: 0.25em;
+  display: block;
+}
+
+li p { line-height: 1.25em; }
+
+div.extra-details {
+  background-image: url("images/extra-details.png");
+  background-position: 0.5% 1%;
+  background-size: 4%;
+}
+
+/* This is used only for the history slide (the only table in this doc) */
+td {
+  padding: 0.1em 0.5em;
+  background: #eee;
+}
+
+/* Use this to layout a slide in two columns */
+.column-half {
+  float: left;
+  width: 50%;
+}
+
+.hide {
+  display: none;
+}

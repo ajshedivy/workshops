@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  bgpd:
+    image: frrouting/frr:v8.2.2
+    volumes:
+    - ./conf:/etc/frr
+    - ./run:/var/run/frr
+    network_mode: host
+    cap_add:
+    - NET_ADMIN
+    - SYS_ADMIN
+    entrypoint: /usr/lib/frr/bgpd -f /etc/frr/bgpd.conf --log=stdout --log-level=debug --no_kernel --no_zebra
+    restart: always
+
+  zebra:
+    image: frrouting/frr:v8.2.2
+    volumes:
+    - ./conf:/etc/frr
+    - ./run:/var/run/frr
+    network_mode: host
+    cap_add:
+    - NET_ADMIN
+    - SYS_ADMIN
+    entrypoint: /usr/lib/frr/zebra -f /etc/frr/zebra.conf --log=stdout --log-level=debug
+    restart: always
+
+  vtysh:
+    image: frrouting/frr:v8.2.2
+    volumes:
+    - ./conf:/etc/frr
+    - ./run:/var/run/frr
+    network_mode: host
+    entrypoint: vtysh
+
+  chmod:
+    image: alpine
+    volumes:
+    - ./run:/var/run/frr
+    command: chmod 777 /var/run/frr
